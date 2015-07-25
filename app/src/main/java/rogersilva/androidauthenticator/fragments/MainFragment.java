@@ -5,7 +5,12 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.orogersilva.authenticator.Authenticator;
 
 import rogersilva.androidauthenticator.R;
 
@@ -17,6 +22,10 @@ public class MainFragment extends Fragment {
     // region INSTANCE VARIABLES
 
     private OnAuthenticatedListener mListener;
+
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private Button loginButton;
 
     // endregion
 
@@ -48,7 +57,27 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_authentication, container, false);
+        View view = inflater.inflate(R.layout.fragment_authentication, container, false);
+
+        usernameEditText = (EditText) view.findViewById(R.id.username_edit_text);
+        passwordEditText = (EditText) view.findViewById(R.id.password_edit_text);
+        loginButton = (Button) view.findViewById(R.id.login_button);
+
+        loginButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+
+                Authenticator authenticator = new Authenticator("", username, password);
+
+                authenticator.authenticate();
+            }
+        });
+
+        return view;
     }
 
     // endregion
