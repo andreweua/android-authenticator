@@ -71,7 +71,7 @@ public class MainFragment extends Fragment {
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                Authenticator authenticator = new Authenticator("", username, password);
+                Authenticator authenticator = new Authenticator(getActivity(), "", username, password);
 
                 authenticator.authenticate();
             }
