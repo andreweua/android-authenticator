@@ -39,6 +39,14 @@
             android:maxLength="30"
             android:background="@drawable/rect_edit_text"/>
 
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/login_edit_text_margin_left"
+            android:layout_marginRight="@dimen/login_edit_text_margin_right"
+            android:text="@string/login_button_str"/>
+
     </LinearLayout>
 
 </RelativeLayout>
