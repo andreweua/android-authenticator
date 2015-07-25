@@ -7,20 +7,30 @@ public class Authenticator {
 
     // region INSTANCE VARIABLES
 
-    private final String address = "";
-
+    private String address;
     private String username;
     private String password;
 
     // endregion
 
-    public Authenticator(String username, String password) {
+    public Authenticator(String address, String username, String password) {
 
+        setAddress(address);
         setUsername(username);
         setPassword(password);
     }
 
     // region GETTERS AND SETTERS
+
+    public String getAddress() {
+
+        return address;
+    }
+
+    public void setAddress(String address) {
+
+        this.address = address;
+    }
 
     public String getUsername() {
 
