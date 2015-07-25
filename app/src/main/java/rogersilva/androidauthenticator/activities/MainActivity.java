@@ -1,17 +1,45 @@
-package rogersilva.androidauthenticator;
+package rogersilva.androidauthenticator.activities;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import rogersilva.androidauthenticator.R;
+import rogersilva.androidauthenticator.fragments.MainFragment;
+import rogersilva.androidauthenticator.fragments.MainFragment.OnAuthenticatedListener;
+
+
+
+public class MainActivity extends Activity
+    implements OnAuthenticatedListener {
+
+    @Override
+    public void onAuthenticated() {
+    }
+
+    // region ACTIVITY LIFECYCLE METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        MainFragment mainFragment = new MainFragment();
+
+        fragmentTransaction.add(R.id.fragment_container, mainFragment);
+        fragmentTransaction.commit();
     }
+
+    // endregion
+
+    // region MENU METHODS
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,4 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    // endregion
 }
