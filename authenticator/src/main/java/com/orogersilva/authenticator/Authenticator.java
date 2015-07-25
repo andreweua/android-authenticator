@@ -1,5 +1,14 @@
 package com.orogersilva.authenticator;
 
+import android.content.Context;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 /**
  * Created by RogerSilva on 7/25/2015.
  */
@@ -7,13 +16,19 @@ public class Authenticator {
 
     // region INSTANCE VARIABLES
 
+    private Context context;
+    private RequestQueue requestQueue;
+
     private String address;
     private String username;
     private String password;
 
     // endregion
 
-    public Authenticator(String address, String username, String password) {
+    public Authenticator(Context context, String address, String username, String password) {
+
+        this.context = context;
+        requestQueue = Volley.newRequestQueue(this.context);
 
         setAddress(address);
         setUsername(username);
@@ -52,9 +67,28 @@ public class Authenticator {
         this.password = password;
     }
 
-    public String authenticate() {
+    public void authenticate() {
 
-        return null;
+        StringRequest requestStr = new StringRequest(Request.Method.POST, address,
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+
+                    }
+                }
+        );
+
+        requestQueue.add(requestStr);
     }
 
     // endregion
